@@ -24,15 +24,6 @@ public class OrdersManagerBean {
         return order;
     }
 
-    public Position cretatePosition(String name, int price){
-        Position position = new Position();
-        position.setName(name);
-        position.setPrice(price);
-        entityManager.persist(position);
-
-        return position;
-    }
-
     public boolean addOrder(long positionId, long orderId, int quantity){
         Position position = entityManager.find(Position.class, positionId);
         if(position == null){
