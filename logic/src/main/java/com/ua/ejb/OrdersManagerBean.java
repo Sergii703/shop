@@ -9,6 +9,9 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Stateless
 @LocalBean
@@ -43,5 +46,19 @@ public class OrdersManagerBean {
         entityManager.persist(positionInOrder);
 
         return true;
+    }
+
+    public List<Position> getPositionInOrder(long orderId){
+        Order order = entityManager.find(Order.class, orderId);
+        if(order == null){
+            return Collections.emptyList();
+        }
+
+        List<PositionInOrder>positionInOrders = order.getPositionInOrder();
+        List<Position> result = new ArrayList<>();
+            for (PositionInOrder positionInOrder : positionInOrders){
+                result.add(positionInOrder.getPosition());
+            }
+            return result;
     }
 }

@@ -10,7 +10,7 @@ public class Position {
     private  String name;
     private int price;
 
-    @OneToMany
+    @OneToMany(mappedBy = "position")
     private List<PositionInOrder> positionInOrder;
 
     public List<PositionInOrder> getPositionInOrder() {

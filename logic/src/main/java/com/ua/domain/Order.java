@@ -8,7 +8,7 @@ public class Order {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "order")
     private List<PositionInOrder> positionInOrder;
 
     public long getId() {

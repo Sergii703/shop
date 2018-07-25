@@ -5,7 +5,44 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+<h:head>Shop</h:head>
+<h:body>
+    <h:form>
+        <table>
+            <tr>
+                <td><h:inputText value="#{orderBean.name}"/></td>
+                <td><h:inputText value="#{orderBean.price}"/></td>
+                <td><h:inputText value="#{orderBean.quantity}"/></td>
+            </tr>
+            <tr>
+                <td>Naming</td>
+                <td>Pricing</td>
+            </tr>
+            <tr>
+                <td><h:commandButton action="#{orderBean.createPosition()}">Create Position</h:commandButton></td>
+                <td><h:commandButton action="#{orderBean.createOrder()}">Create Order</h:commandButton></td>
+            </tr>
+        </table>
+
+        <h:dataTable value="#{orderBean.position}" var = "position">
+            <h:column>
+                <h:outputText value="#{position.name}"/>
+            </h:column>
+            <h:column>
+                <h:outputText value="#{position.price}"/>
+            </h:column>
+            <h:column>
+                <h:commandButton value="Add" action="#{orderBean.addPosition(position)}"/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+    <h:dataTable value="#{orderBean.positionInOrder}" var = "position">
+        <h:column>
+            <h:outputText value="#{position.name}"/>
+        </h:column>
+        <h:column>
+            <h:outputText value="#{position.price}"/>
+        </h:column>
+    </h:dataTable>
+</h:body>
 </html>
